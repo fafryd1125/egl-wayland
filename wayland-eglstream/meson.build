@@ -4,7 +4,7 @@ generated_protocols = [
 ]
 
 foreach proto : generated_protocols
-    foreach output_type: ['client-header', 'server-header', 'private-code']
+    foreach output_type : ['client-header', 'server-header', 'private-code']
         if output_type == 'client-header'
             output_file = '@0@-client-protocol.h'.format(proto)
         elif output_type == 'server-header'
@@ -19,9 +19,9 @@ foreach proto : generated_protocols
         var_name = output_file.underscorify()
         target = custom_target(
             '@0@'.format(output_file),
-            command: [prog_scanner, output_type, '@INPUT@', '@OUTPUT@'],
-            input: '@0@.xml'.format(proto),
-            output: output_file,
+            command : [prog_scanner, output_type, '@INPUT@', '@OUTPUT@'],
+            input : '@0@.xml'.format(proto),
+            output : output_file,
         )
 
         set_variable(var_name, target)
